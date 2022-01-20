@@ -1,0 +1,12 @@
+AllowShortBlocksOnASingleLine : false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+BasedOnStyle: LLVM
+ColumnLimit: 120
+IndentWidth: 2
+Language: Cpp
+MaxEmptyLinesToKeep: 1
+PointerAlignment: Right
+SpaceAfterCStyleCast: true
+TabWidth: 2
+UseTab: Never
