@@ -9,6 +9,7 @@ char *longestPalindrome(char *s) {
   int len = strlen(s);
 
   // init DP table
+  // is_palindromic[i][j] = s[i:j+1] is palindromic or not
   bool **is_palindromic = malloc(len * sizeof(*is_palindromic));
   bool *tmp = malloc(len * len * sizeof(*tmp));
   for (int i = 0; i < len; ++i) {
