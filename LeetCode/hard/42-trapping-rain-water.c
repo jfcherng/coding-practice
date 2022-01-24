@@ -1,9 +1,4 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "_leetcode_common.h"
 
 int trap(int *height, int heightSize) {
   // sum of rain+block, and sum of block

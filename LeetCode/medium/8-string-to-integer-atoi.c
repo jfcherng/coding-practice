@@ -1,9 +1,4 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "_leetcode_common.h"
 
 #define I32_MAX 0x7fffffff
 #define I32_MIN 0x80000000

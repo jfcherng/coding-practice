@@ -1,13 +1,4 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-struct ListNode {
-  int val;
-  struct ListNode *next;
-};
+#include "_leetcode_common.h"
 
 bool hasCycle(struct ListNode *head) {
   struct ListNode *fast = head, *slow = head;

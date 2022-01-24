@@ -1,7 +1,4 @@
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "_leetcode_common.h"
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().

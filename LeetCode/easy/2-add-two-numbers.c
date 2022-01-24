@@ -1,24 +1,8 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-struct ListNode {
-  int val;
-  struct ListNode *next;
-};
+#include "_leetcode_common.h"
 
 void print_list(char *name, struct ListNode *head) {
   printf("%s: ", name);
-  while (head) {
-    printf("%d", head->val);
-    if (head->next) {
-      printf(" -> ");
-    }
-    head = head->next;
-  }
-  printf("\n");
+  printListNode(head);
 }
 
 /**

@@ -1,7 +1,4 @@
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "_leetcode_common.h"
 
 #define NEGATIVE_MIN 0x80000000
 #define POSITIVE_MAX 0x7fffffff

@@ -1,8 +1,4 @@
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "_leetcode_common.h"
 
 char *longestPalindrome(char *s) {
   printf("input: %s\n", s);

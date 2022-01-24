@@ -1,9 +1,4 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "_leetcode_common.h"
 
 #define LOWER (1 << 0)
 #define UPPER (1 << 1)

@@ -1,6 +1,4 @@
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
+#include "_leetcode_common.h"
 
 bool checkPerfectNumber(int num) {
   int sum = 0;

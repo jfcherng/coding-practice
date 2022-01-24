@@ -1,9 +1,4 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "_leetcode_common.h"
 
 char *longestCommonPrefix(char **strs, int strsSize) {
   if (strsSize <= 0)

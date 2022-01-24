@@ -1,8 +1,4 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "_leetcode_common.h"
 
 int searchInsert(int *nums, int numsSize, int target) {
   if (numsSize == 0)

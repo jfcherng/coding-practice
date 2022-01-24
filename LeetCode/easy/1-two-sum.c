@@ -1,8 +1,4 @@
-#include "uthash.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "_leetcode_common.h"
 
 void print_arr(char *name, int *arr, int size) {
   printf("%s = [ ", name);
