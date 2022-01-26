@@ -11,6 +11,21 @@ struct ListNode {
   struct ListNode *next;
 };
 
+struct TreeNode {
+  int val;
+  struct TreeNode *left;
+  struct TreeNode *right;
+};
+
+void printList(int *list, int listSize) {
+  printf("[ ");
+  while (listSize--) {
+    printf("%d", *list);
+    ++list;
+  }
+  printf(" ]\n");
+}
+
 void printListNode(struct ListNode *head) {
   while (head) {
     printf("%d -> ", head->val);
