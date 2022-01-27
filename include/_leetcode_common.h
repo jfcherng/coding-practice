@@ -18,10 +18,13 @@ struct TreeNode {
 };
 
 void printList(int *list, int listSize) {
-  printf("[ ");
+  if (listSize < 0)
+    return;
+
+  printf(listSize ? "[ " : "[");
   while (listSize--) {
     printf("%d", *list);
-    if (listSize > 0) {
+    if (listSize) {
       printf(", ");
     }
     ++list;
