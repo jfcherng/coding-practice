@@ -21,6 +21,9 @@ void printList(int *list, int listSize) {
   printf("[ ");
   while (listSize--) {
     printf("%d", *list);
+    if (listSize > 0) {
+      printf(", ");
+    }
     ++list;
   }
   printf(" ]\n");
@@ -30,6 +33,9 @@ void printListNode(struct ListNode *head) {
   while (head) {
     printf("%d -> ", head->val);
     head = head->next;
+    if (!head) {
+      printf("NULL");
+    }
   }
   printf("\n");
 }
