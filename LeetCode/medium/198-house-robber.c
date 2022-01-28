@@ -4,7 +4,7 @@
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 
 int rob(int *nums, int numsSize) {
-  if (numsSize == 0) {
+  if (numsSize <= 0) {
     return 0;
   }
 
