@@ -1,4 +1,4 @@
-AllowShortBlocksOnASingleLine : false
+AllowShortBlocksOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: false
 BasedOnStyle: LLVM
