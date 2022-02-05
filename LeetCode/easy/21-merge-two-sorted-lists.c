@@ -8,30 +8,25 @@
  * };
  */
 
-#define MAX_SIZE (102)
-
 struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2) {
   struct ListNode *dummy = malloc(sizeof(*dummy));
   struct ListNode *tail = dummy;
   dummy->next = NULL;
 
-  while (list1 || list2) {
-    if (!list1) {
-      tail->next = list2;
-      break;
-    }
-    if (!list2) {
-      tail->next = list1;
-      break;
-    }
-
+  while (list1 && list2) {
     // the list which has a smaller head
     struct ListNode **list = list1->val < list2->val ? &list1 : &list2;
     tail->next = *list;
     *list = (*list)->next;
-
     // next iteration
     tail = tail->next;
+  }
+
+  if (list1) {
+    tail->next = list1;
+  }
+  if (list2) {
+    tail->next = list2;
   }
 
   return dummy->next;
