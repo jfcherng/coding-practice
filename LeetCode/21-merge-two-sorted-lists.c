@@ -8,28 +8,18 @@
  * };
  */
 
-struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2) {
-  struct ListNode *dummy = malloc(sizeof(*dummy));
-  struct ListNode *tail = dummy;
-  dummy->next = NULL;
+struct ListNode *mergeTwoLists(struct ListNode *l1, struct ListNode *l2) {
+  struct ListNode *head, **pp = &head, **less;
 
-  while (list1 && list2) {
-    // the list which has a smaller head
-    struct ListNode **list = list1->val < list2->val ? &list1 : &list2;
-    tail->next = *list;
-    *list = (*list)->next;
-    // next iteration
-    tail = tail->next;
+  for (; l1 && l2; pp = &((*pp)->next)) {
+    less = l1->val < l2->val ? &l1 : &l2;
+    *pp = *less;
+    *less = (*less)->next;
   }
+  // either l1 or l2 is NULL (i.e., 0)
+  *pp = (struct ListNode *) ((uintptr_t) l1 | (uintptr_t) l2);
 
-  if (list1) {
-    tail->next = list1;
-  }
-  if (list2) {
-    tail->next = list2;
-  }
-
-  return dummy->next;
+  return head;
 }
 
 int main(int argc, char *argv[]) {
