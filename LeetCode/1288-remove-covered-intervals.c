@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int sorter(const void *r1, const void *r2) {
   int *_r1 = *(int **) r1, *_r2 = *(int **) r2;

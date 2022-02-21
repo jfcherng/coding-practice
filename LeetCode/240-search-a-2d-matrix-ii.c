@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 bool searchMatrix(int **matrix, int matrixSize, int *matrixColSize, int target) {
   int m = matrixSize, n = m ? matrixColSize[0] : 0;

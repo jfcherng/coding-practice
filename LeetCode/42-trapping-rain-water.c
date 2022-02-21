@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int trap(int *height, int heightSize) {
   // sum of rain+block, and sum of block

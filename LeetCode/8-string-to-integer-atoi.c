@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 #define I32_MAX 0x7fffffff
 #define I32_MIN 0x80000000

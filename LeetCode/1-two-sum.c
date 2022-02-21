@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 void print_arr(char *name, int *arr, int size) {
   printf("%s = [ ", name);

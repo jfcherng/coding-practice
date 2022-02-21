@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int sumNumbers(struct TreeNode *root) {
   if (!root || !root->left && !root->right) {

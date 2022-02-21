@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 const int PAIRS_CNT = 3;
 const char *PAIRS[] = {"()", "[]", "{}"};

@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 /**
  * Definition for singly-linked list.
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
   struct ListNode *res = mergeTwoLists(&m1, &n1);
 
-  printListNode(res);
+  printListNodes(res);
 
   return 0;
 }

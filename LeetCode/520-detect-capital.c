@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 #define LOWER (1 << 0)
 #define UPPER (1 << 1)

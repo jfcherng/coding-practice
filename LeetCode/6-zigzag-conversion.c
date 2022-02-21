@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 char *convert(char *s, int numRows) {
   if (numRows == 1) {

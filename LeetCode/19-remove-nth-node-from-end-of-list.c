@@ -1,11 +1,10 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 struct ListNode *removeNthFromEnd(struct ListNode *head, int n) {
   struct ListNode **first = &head, **second = &head;
 
-  while (n > 0 && *first) {
+  while (n-- > 0 && *first) {
     first = &((*first)->next);
-    --n;
   }
 
   while (*first) {
@@ -14,33 +13,33 @@ struct ListNode *removeNthFromEnd(struct ListNode *head, int n) {
   }
 
   // remove node
-  struct ListNode *candidate = *second;
+  struct ListNode *target = *second;
   *second = (*second)->next;
-  free(candidate); // if the source if dynamically allocated
+  free(target);
 
   return head;
 }
 
 int main(int argc, char *argv[]) {
-  struct ListNode n5 = {.val = 5, .next = NULL};
-  struct ListNode n4 = {.val = 4, .next = &n5};
-  struct ListNode n3 = {.val = 3, .next = &n4};
-  struct ListNode n2 = {.val = 2, .next = &n3};
-  struct ListNode n1 = {.val = 1, .next = &n2};
-  struct ListNode *headn = &n1;
+  struct ListNode *head;
+
+  int vals_1[] = {1, 2, 3, 4, 5};
+  head = createListNodesFromList(vals_1, sizeof(vals_1) / sizeof(int));
 
   printf("input(%d): ", 2);
-  printListNode(headn);
+  printListNodes(head);
   printf("output: ");
-  printListNode(removeNthFromEnd(headn, 2));
+  printListNodes(removeNthFromEnd(head, 2));
+  freeListNodes(&head);
 
-  struct ListNode a1 = {.val = 1, .next = NULL};
-  struct ListNode *heada = &a1;
+  int vals_2[] = {1};
+  head = createListNodesFromList(vals_2, sizeof(vals_2) / sizeof(int));
 
   printf("input(%d): ", 1);
-  printListNode(heada);
+  printListNodes(head);
   printf("output: ");
-  printListNode(removeNthFromEnd(heada, 1));
+  printListNodes(removeNthFromEnd(head, 1));
+  freeListNodes(&head);
 
   return 0;
 }

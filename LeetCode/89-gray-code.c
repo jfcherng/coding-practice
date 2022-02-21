@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int *grayCode(const int n, int *returnSize) {
   *returnSize = 1 << n;

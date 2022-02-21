@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int maximumWealth(int **accounts, int accountsSize, int *accountsColSize) {
   int res = -INT_MAX;

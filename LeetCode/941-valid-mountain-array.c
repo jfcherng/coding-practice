@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 #define GO_DOWN (1 << 0)
 #define GO_UP (1 << 1)

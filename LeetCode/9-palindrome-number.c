@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 bool isPalindrome(int x) {
   if (x < 0)

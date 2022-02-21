@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 void swap(int *a, int *b) {
   int tmp = *a;

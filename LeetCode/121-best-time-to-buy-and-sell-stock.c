@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 #include <stdlib.h>
 
 #define MIN(x, y) ((x) < (y) ? (x) : (y))

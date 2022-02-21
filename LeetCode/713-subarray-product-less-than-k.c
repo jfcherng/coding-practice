@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int numSubarrayProductLessThanK(int *nums, int numsSize, int k) {
   if (k <= 1)

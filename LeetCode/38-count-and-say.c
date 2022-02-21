@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 char *countAndSay(const int n) {
   if (n == 1) {

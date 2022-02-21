@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 bool backspaceCompare(char *s, char *t) {
   // compare strings in reversed order, "#" means we can skip the next char

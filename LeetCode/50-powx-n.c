@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 double myPow(double x, int n) {
   double sum = 1.0;

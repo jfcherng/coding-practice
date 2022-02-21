@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 char *removeKdigits(char *num, int k) {
   int num_len = strlen(num);

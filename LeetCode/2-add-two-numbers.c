@@ -1,8 +1,8 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 void print_list(char *name, struct ListNode *head) {
   printf("%s: ", name);
-  printListNode(head);
+  printListNodes(head);
 }
 
 /**

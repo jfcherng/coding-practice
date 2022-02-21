@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int singleNumber(int *nums, int numsSize) {
   int res = 0;

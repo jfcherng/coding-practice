@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 bool hasCycle(struct ListNode *head) {
   struct ListNode *fast = head, *slow = head;

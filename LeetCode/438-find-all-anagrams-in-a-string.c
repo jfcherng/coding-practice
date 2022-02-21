@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().

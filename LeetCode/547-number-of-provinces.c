@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 void explore(int **isConnected, bool *visited, int n, int node) {
   if (visited[node])

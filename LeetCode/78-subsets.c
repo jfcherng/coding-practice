@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 /**
  * Return an array of arrays of size *returnSize.

@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 bool isMatch(char *s, char *p) {
   if (!*p)

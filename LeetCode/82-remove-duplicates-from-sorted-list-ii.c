@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 /**
  * Definition for singly-linked list.
@@ -43,9 +43,9 @@ int main(int argc, char *argv[]) {
   struct ListNode *headn = &n1;
 
   printf("input: ");
-  printListNode(headn);
+  printListNodes(headn);
   printf("output: ");
-  printListNode(deleteDuplicates(headn));
+  printListNodes(deleteDuplicates(headn));
 
   struct ListNode a5 = {.val = 3, .next = NULL};
   struct ListNode a4 = {.val = 2, .next = &a5};
@@ -55,9 +55,9 @@ int main(int argc, char *argv[]) {
   struct ListNode *heada = &a1;
 
   printf("input: ");
-  printListNode(heada);
+  printListNodes(heada);
   printf("output: ");
-  printListNode(deleteDuplicates(heada));
+  printListNodes(deleteDuplicates(heada));
 
   return 0;
 }

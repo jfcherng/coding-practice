@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int majorityElement(int *nums, int numsSize) {
   // sorting and return the mid element is obvious...

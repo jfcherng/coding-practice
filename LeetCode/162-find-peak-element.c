@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 // both ends of the array is negative infinity so there must be at least one peak
 int findPeakElement(int *nums, int numsSize) {

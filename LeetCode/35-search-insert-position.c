@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int searchInsert(int *nums, int numsSize, int target) {
   if (numsSize == 0)

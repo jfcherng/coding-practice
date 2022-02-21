@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int firstMissingPositive(int *nums, int numsSize) {
   // using array "nums" itself as a hashset

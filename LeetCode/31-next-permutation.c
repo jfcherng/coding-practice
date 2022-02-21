@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 void reverse(int **nums, int l, int r) {
   int *el = *nums;

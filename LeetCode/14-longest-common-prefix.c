@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 char *longestCommonPrefix(char **strs, int strsSize) {
   if (strsSize <= 0)

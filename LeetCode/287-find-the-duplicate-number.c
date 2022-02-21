@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int findDuplicate(int *nums, int numsSize) {
   int slow = 0, fast = 0;

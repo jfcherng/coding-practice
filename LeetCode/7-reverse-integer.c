@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 #define NEGATIVE_MIN 0x80000000
 #define POSITIVE_MAX 0x7fffffff

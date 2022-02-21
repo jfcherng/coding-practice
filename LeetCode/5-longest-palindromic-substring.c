@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 char *longestPalindrome(char *s) {
   printf("input: %s\n", s);

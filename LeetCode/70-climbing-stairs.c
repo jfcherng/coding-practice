@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 int climbStairs(int n) {
   int *dp = malloc((n + 2) * sizeof(*dp));

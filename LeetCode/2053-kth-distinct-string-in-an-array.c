@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 typedef struct {
   char *name; /* key (string is WITHIN the structure) */

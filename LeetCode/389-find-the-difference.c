@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 
 char findTheDifference(char *s, char *t) {
   char k = 0;

@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 #include <stdlib.h>
 
 /**
@@ -54,7 +54,7 @@ struct ListNode *mergeKLists(struct ListNode **lists, int listsSize) {
     printf("listsSize(%d)\n", listsSize);
     for (int i = 0; i < listsSize; ++i) {
       printf("lists[%d]: ", i);
-      printListNode(lists[i]);
+      printListNodes(lists[i]);
     }
   }
 
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
 
   struct ListNode *res = mergeKLists(lists, listsSize);
 
-  printListNode(res);
+  printListNodes(res);
 
   return 0;
 }

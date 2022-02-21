@@ -1,4 +1,4 @@
-#include "_leetcode_common.h"
+#include "_leetcode_common.c"
 #include <corecrt_malloc.h>
 #include <stdlib.h>
 
