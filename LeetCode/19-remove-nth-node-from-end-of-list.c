@@ -1,28 +1,22 @@
 #include "_leetcode_common.h"
 
 struct ListNode *removeNthFromEnd(struct ListNode *head, int n) {
-  struct ListNode *visitor = head;
-  while (n > 0 && visitor) {
-    visitor = visitor->next;
+  struct ListNode **first = &head, **second = &head;
+
+  while (n > 0 && *first) {
+    first = &((*first)->next);
     --n;
   }
 
-  if (!visitor) {
-    // if n == length, means we want to remove the 1st node,
-    // so we can directly return the next node.
-    //
-    // otherwise, node list is too short. nothing to be removed
-    return n ? head : head->next;
+  while (*first) {
+    first = &((*first)->next);
+    second = &((*second)->next);
   }
 
-  struct ListNode *needle = head;
-  while (visitor->next) {
-    visitor = visitor->next;
-    needle = needle->next;
-  }
-
-  // skip the next node of the niddle
-  needle->next = needle->next->next;
+  // remove node
+  struct ListNode *candidate = *second;
+  *second = (*second)->next;
+  free(candidate); // if the source if dynamically allocated
 
   return head;
 }
