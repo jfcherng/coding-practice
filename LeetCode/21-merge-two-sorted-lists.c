@@ -7,7 +7,6 @@
  *     struct ListNode *next;
  * };
  */
-
 struct ListNode *mergeTwoLists(struct ListNode *l1, struct ListNode *l2) {
   struct ListNode *head, **pp = &head, **less;
 
@@ -23,23 +22,22 @@ struct ListNode *mergeTwoLists(struct ListNode *l1, struct ListNode *l2) {
 }
 
 int main(int argc, char *argv[]) {
-  struct ListNode m1 = {.val = 1};
-  struct ListNode m2 = {.val = 2};
-  struct ListNode m3 = {.val = 4};
-  m1.next = &m2;
-  m2.next = &m3;
-  m3.next = NULL;
+  struct ListNode *l1, *l2, *res;
 
-  struct ListNode n1 = {.val = 1};
-  struct ListNode n2 = {.val = 3};
-  struct ListNode n3 = {.val = 4};
-  n1.next = &n2;
-  n2.next = &n3;
-  n3.next = NULL;
-
-  struct ListNode *res = mergeTwoLists(&m1, &n1);
-
+  int v1[] = {1, 2, 4};
+  l1 = createListNodesFromList(v1, sizeof(v1) / sizeof(int));
+  int v2[] = {1, 3, 4};
+  l2 = createListNodesFromList(v2, sizeof(v2) / sizeof(int));
+  printf("L1: ");
+  printListNodes(l1);
+  printf("L2: ");
+  printListNodes(l2);
+  res = mergeTwoLists(l1, l2);
+  printf("res: ");
   printListNodes(res);
+  freeListNodes(&l1);
+  freeListNodes(&l2);
+  freeListNodes(&res);
 
   return 0;
 }
