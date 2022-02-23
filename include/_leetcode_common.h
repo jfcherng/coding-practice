@@ -8,3 +8,9 @@ struct TreeNode {
   struct TreeNode *left;
   struct TreeNode *right;
 };
+
+struct Node {
+  int val;
+  int numNeighbors;
+  struct Node **neighbors;
+};
