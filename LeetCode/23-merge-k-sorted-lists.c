@@ -1,5 +1,6 @@
 #include "_leetcode_common.c"
-#include <stdlib.h>
+
+#define DEBUG
 
 /**
  * Definition for singly-linked list.
@@ -10,85 +11,54 @@
  */
 
 // LeetCode #21
-struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2) {
-  struct ListNode *dummy = malloc(sizeof(*dummy));
-  struct ListNode *tail = dummy;
-  dummy->next = NULL;
+struct ListNode *mergeTwoLists(struct ListNode *l1, struct ListNode *l2) {
+  struct ListNode *head, **pp = &head, **less;
 
-  while (list1 && list2) {
-    // the list which has a smaller head
-    struct ListNode **list = list1->val < list2->val ? &list1 : &list2;
-    tail->next = *list;
-    *list = (*list)->next;
-    // next iteration
-    tail = tail->next;
+  for (; l1 && l2; pp = &((*pp)->next)) {
+    less = l1->val < l2->val ? &l1 : &l2;
+    *pp = *less;
+    *less = (*less)->next;
   }
+  // either l1 or l2 is NULL (i.e., 0)
+  *pp = (struct ListNode *) ((uintptr_t) l1 | (uintptr_t) l2);
 
-  if (list1) {
-    tail->next = list1;
-  }
-  if (list2) {
-    tail->next = list2;
-  }
-
-  return dummy->next;
+  return head;
 }
 
 struct ListNode *mergeKLists(struct ListNode **lists, int listsSize) {
-  if (listsSize == 0) {
-    return NULL;
-  }
-
   while (listsSize > 1) {
-    struct ListNode **merged = malloc(5001 * sizeof(*merged));
     int length = 0;
     for (int i = 0; i < listsSize; i += 2) {
-      struct ListNode *l1 = lists[i];
-      struct ListNode *l2 = i + 1 < listsSize ? lists[i + 1] : NULL;
-      merged[length++] = mergeTwoLists(l1, l2);
+      // in-place merge
+      lists[length++] = mergeTwoLists(lists[i], // ...
+                                      i + 1 < listsSize ? lists[i + 1] : NULL);
     }
     // next iteration
-    lists = merged;
     listsSize = length;
 
+#ifdef DEBUG
     printf("listsSize(%d)\n", listsSize);
     for (int i = 0; i < listsSize; ++i) {
       printf("lists[%d]: ", i);
       printListNodes(lists[i]);
     }
+#endif
   }
 
-  return lists[0];
+  return listsSize ? lists[0] : NULL;
 }
 
 int main(int argc, char *argv[]) {
-  struct ListNode m1 = {.val = 1};
-  struct ListNode m2 = {.val = 4};
-  struct ListNode m3 = {.val = 5};
-  m1.next = &m2;
-  m2.next = &m3;
-  m3.next = NULL;
+  int l0[] = {1, 4, 5};
+  int l1[] = {1, 3, 4};
+  int l2[] = {2, 6};
+  struct ListNode *lists[] = {
+      createListNodesFromList(l0, sizeof(l0) / sizeof(int)),
+      createListNodesFromList(l1, sizeof(l1) / sizeof(int)),
+      createListNodesFromList(l2, sizeof(l2) / sizeof(int)),
+  };
 
-  struct ListNode n1 = {.val = 1};
-  struct ListNode n2 = {.val = 3};
-  struct ListNode n3 = {.val = 4};
-  n1.next = &n2;
-  n2.next = &n3;
-  n3.next = NULL;
-
-  struct ListNode o1 = {.val = 2};
-  struct ListNode o2 = {.val = 6};
-  o1.next = &o2;
-  o2.next = NULL;
-
-  int listsSize = 3;
-  struct ListNode **lists = malloc(listsSize * sizeof(*lists));
-  lists[0] = &m1;
-  lists[1] = &n1;
-  lists[2] = &o1;
-
-  struct ListNode *res = mergeKLists(lists, listsSize);
-
+  struct ListNode *res = mergeKLists(lists, sizeof(lists) / sizeof(struct ListNode *));
   printListNodes(res);
 
   return 0;
