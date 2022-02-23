@@ -2,75 +2,85 @@
 
 #define NONEXISTENT_VALUE (-1)
 
+typedef struct MyHashMapNode MyHashMapNode;
 typedef struct MyHashMap MyHashMap;
-struct MyHashMap {
+
+struct MyHashMapNode {
   int key;
   int value;
-  MyHashMap *next;
+  // nodes are in the form of a linked list
+  MyHashMapNode *next;
 };
 
-MyHashMap *myHashMapCreate() {
-  MyHashMap *ret = malloc(sizeof(*ret));
-  ret->next = NULL;
-  return ret;
+struct MyHashMap {
+  MyHashMapNode *handle;
+};
+
+MyHashMapNode *_myHashMapNodeCreate() {
+  MyHashMapNode *obj = malloc(sizeof(*obj));
+  obj->next = NULL;
+  return obj;
 }
 
-MyHashMap *myHashMapFindKey(MyHashMap *obj, int key) {
-  while (obj) {
-    if (obj->key == key) {
-      return obj;
-    }
-    obj = obj->next;
+MyHashMapNode *_myHashMapFindKey(MyHashMap *obj, int key) {
+  MyHashMapNode *node = obj->handle;
+  while (node) {
+    if (node->key == key)
+      return node;
+    node = node->next;
   }
   return NULL;
 }
 
-void myHashMapAddNode(MyHashMap *obj, MyHashMap *node) {
-  MyHashMap *tmp = obj->next;
-  obj->next = node;
+void _myHashMapAddNode(MyHashMap *obj, MyHashMapNode *node) {
+  MyHashMapNode *tmp = obj->handle;
+  obj->handle = node;
   node->next = tmp;
 }
 
+MyHashMap *myHashMapCreate() {
+  MyHashMap *obj = malloc(sizeof(*obj));
+  obj->handle = NULL;
+  return obj;
+}
+
 void myHashMapPut(MyHashMap *obj, int key, int value) {
-  MyHashMap *node = myHashMapFindKey(obj, key);
-  if (node) {
-    node->value = value;
-  } else {
-    node = myHashMapCreate();
+  MyHashMapNode *node = _myHashMapFindKey(obj, key);
+  if (!node) {
+    // prepare node
+    node = _myHashMapNodeCreate();
     node->key = key;
-    node->value = value;
-    myHashMapAddNode(obj, node);
+    _myHashMapAddNode(obj, node);
   }
+  node->value = value;
 }
 
 int myHashMapGet(MyHashMap *obj, int key) {
-  MyHashMap *node = myHashMapFindKey(obj, key);
+  MyHashMapNode *node = _myHashMapFindKey(obj, key);
   return node ? node->value : NONEXISTENT_VALUE;
 }
 
 void myHashMapRemove(MyHashMap *obj, int key) {
-  MyHashMap *dummy = myHashMapCreate();
-  dummy->next = obj;
-  MyHashMap *prev = dummy;
-  while (obj) {
-    if (obj->key == key) {
-      prev->next = obj->next;
-      free(obj);
+  MyHashMapNode **pp = &(obj->handle), *tmp;
+  while (*pp) {
+    if ((*pp)->key == key) {
+      tmp = *pp;
+      *pp = (*pp)->next;
+      free(tmp);
       break;
     }
-    prev = obj;
-    obj = obj->next;
+    pp = &((*pp)->next);
   }
-  free(dummy);
 }
 
 void myHashMapFree(MyHashMap *obj) {
-  MyHashMap *tmp = myHashMapCreate();
-  while (obj) {
-    tmp = obj;
-    obj = obj->next;
+  MyHashMapNode *node = obj->handle, *tmp;
+  while (node) {
+    tmp = node;
+    node = node->next;
     free(tmp);
   }
+  free(obj);
 }
 
 /**
