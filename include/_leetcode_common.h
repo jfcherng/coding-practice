@@ -1,3 +1,5 @@
+#define DEBUG
+
 struct ListNode {
   int val;
   struct ListNode *next;

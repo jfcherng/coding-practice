@@ -1,7 +1,5 @@
 #include "_leetcode_common.c"
 
-#define DEBUG
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
