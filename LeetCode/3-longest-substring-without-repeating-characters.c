@@ -1,5 +1,8 @@
 #include "_leetcode_common.c"
 
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
+
 typedef struct {
   int c; // key (char)
   char *ptr;
@@ -7,20 +10,18 @@ typedef struct {
 } hash_entry;
 
 int lengthOfLongestSubstring(char *s) {
-  int ans = 0;
-  hash_entry *out, *node, *pool = NULL;
+  int res = 0;
+  hash_entry *out = NULL, *pool = NULL;
 
   char *l = s, *r = s; // sliding window cursors
   for (; *r; ++r) {
-    int k = *r;
-    HASH_FIND_INT(pool, &k, out);
-
+    int key = *r;
+    HASH_FIND_INT(pool, &key, out);
     if (!out) {
-      node = malloc(sizeof(*node));
-      node->c = *r;
-      node->ptr = r;
-      HASH_ADD_INT(pool, c, node);
-      out = node;
+      out = malloc(sizeof(*out));
+      out->c = *r;
+      out->ptr = r;
+      HASH_ADD_INT(pool, c, out);
     }
 
     // is duplicate?
@@ -29,10 +30,10 @@ int lengthOfLongestSubstring(char *s) {
     }
 
     out->ptr = r;
-    ans = fmax(ans, r - l + 1);
+    res = MAX(res, r - l + 1);
   }
 
-  return ans;
+  return res;
 }
 
 int main(int argc, char *argv[]) {
