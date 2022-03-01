@@ -1,20 +1,16 @@
 #include "_leetcode_common.c"
 
-/**
- * Definition for a Node.
- * struct Node {
- *     int val;
- *     int numNeighbors;
- *     struct Node** neighbors;
- * };
- */
+struct Node {
+  int val;
+  int numNeighbors;
+  struct Node **neighbors;
+};
 
 #define MAX_NODE (100)
 
 struct Node *bfs(struct Node *node, struct Node **nodes) {
-  if (nodes[node->val]) {
+  if (nodes[node->val])
     return nodes[node->val];
-  }
 
   struct Node *cloned = malloc(sizeof(*cloned));
   nodes[node->val] = cloned;
