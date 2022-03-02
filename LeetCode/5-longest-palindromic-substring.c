@@ -5,26 +5,26 @@ char *longestPalindrome(char *s) {
   int len = strlen(s);
 
   // init DP table
-  // is_palindromic[i][j] = s[i:j+1] is palindromic or not
-  bool **is_palindromic = malloc(len * sizeof(*is_palindromic));
+  // is_palindromic[i][j] = s[i..j] is palindromic or not
   bool *tmp = malloc(len * len * sizeof(*tmp));
+  bool **is_palindromic = malloc(len * sizeof(*is_palindromic));
   for (int i = 0; i < len; ++i) {
     is_palindromic[i] = &tmp[i * len];
   }
 
   // initial conditions
   for (int i = 0; i < len; ++i) {
-    // single char
+    // length=1 substring
     is_palindromic[i][i] = true;
-    // two neighbor chars
+    // length=2 substring
     if (i + 1 < len)
       is_palindromic[i][i + 1] = s[i] == s[i + 1];
   }
 
   // fill table
-  for (int step = 2; step < len; ++step) {
+  for (int length = 3; length < len; ++length) {
     for (int l = 0; l < len; ++l) {
-      int r = l + step;
+      int r = l + (length - 1);
       if (r >= len)
         continue;
       is_palindromic[l][r] = is_palindromic[l + 1][r - 1] && s[l] == s[r];
