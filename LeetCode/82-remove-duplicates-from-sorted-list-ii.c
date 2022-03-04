@@ -9,55 +9,50 @@
  */
 
 struct ListNode *deleteDuplicates(struct ListNode *head) {
-  struct ListNode dummy = {.next = head};
-  struct ListNode *prev = &dummy; // last non-duplicate node
+  struct ListNode **pp = &head, *last = NULL;
 
-  while (head) {
-    // has duplicate?
-    if (head->next && head->val == head->next->val) {
-      // let head points to the last duplicate node
-      while (head->next && head->val == head->next->val) {
-        head = head->next;
-      }
-      // skip duplicate nodes
-      prev->next = head->next;
-    } else {
-      prev = prev->next;
+  while (*pp) {
+    // make "last" points to the last duplicate node
+    for (last = *pp; last->next && last->next->val == (*pp)->val; last = last->next)
+      ;
+
+    // no duplicate
+    if (*pp == last) {
+      pp = &(last->next);
     }
-
-    head = head->next;
+    // delete duplicates
+    else {
+      while (*pp != last->next) {
+        // struct ListNode *tmp = *pp;
+        *pp = (*pp)->next;
+        // free(tmp);
+      }
+    }
   }
 
-  return dummy.next;
+  return head;
 }
 
 int main(int argc, char *argv[]) {
-  struct ListNode n8 = {.val = 5, .next = NULL};
-  struct ListNode n7 = {.val = 5, .next = &n8};
-  struct ListNode n6 = {.val = 4, .next = &n7};
-  struct ListNode n5 = {.val = 4, .next = &n6};
-  struct ListNode n4 = {.val = 3, .next = &n5};
-  struct ListNode n3 = {.val = 3, .next = &n4};
-  struct ListNode n2 = {.val = 2, .next = &n3};
-  struct ListNode n1 = {.val = 1, .next = &n2};
-  struct ListNode *headn = &n1;
+  struct ListNode *head = NULL;
 
+  int list_1[] = {1, 2, 3, 3, 4, 5, 5};
+  head = createListNodesFromList(list_1, sizeof(list_1) / sizeof(int));
   printf("input: ");
-  printListNodes(headn);
+  printListNodes(head);
   printf("output: ");
-  printListNodes(deleteDuplicates(headn));
+  printListNodes(deleteDuplicates(head));
+  printf("\n");
+  freeListNodes(&head);
 
-  struct ListNode a5 = {.val = 3, .next = NULL};
-  struct ListNode a4 = {.val = 2, .next = &a5};
-  struct ListNode a3 = {.val = 1, .next = &a4};
-  struct ListNode a2 = {.val = 1, .next = &a3};
-  struct ListNode a1 = {.val = 1, .next = &a2};
-  struct ListNode *heada = &a1;
-
+  int list_2[] = {1, 1, 1, 2, 3};
+  head = createListNodesFromList(list_2, sizeof(list_2) / sizeof(int));
   printf("input: ");
-  printListNodes(heada);
+  printListNodes(head);
   printf("output: ");
-  printListNodes(deleteDuplicates(heada));
+  printListNodes(deleteDuplicates(head));
+  printf("\n");
+  freeListNodes(&head);
 
   return 0;
 }
