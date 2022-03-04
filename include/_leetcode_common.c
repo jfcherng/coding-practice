@@ -21,7 +21,7 @@ struct ListNode *createListNode(const int val) {
 }
 
 void freeListNodes(struct ListNode **headp) {
-  for (struct ListNode *p = *headp, *tmp; p;) {
+  for (struct ListNode *p = *headp, *tmp = NULL; p;) {
     tmp = p;
     p = p->next;
     free(tmp);
@@ -30,7 +30,7 @@ void freeListNodes(struct ListNode **headp) {
 }
 
 struct ListNode *createListNodesFromList(const int *vals, const int n) {
-  struct ListNode *head, **pp = &head;
+  struct ListNode *head = NULL, **pp = &head;
   for (int i = 0; i < n; ++i) {
     *pp = createListNode(vals[i]);
     pp = &((*pp)->next);
