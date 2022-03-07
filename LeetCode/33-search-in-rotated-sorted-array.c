@@ -8,29 +8,20 @@ int search(int *nums, int numsSize, int target) {
   int l = 0, r = numsSize - 1;
 
   while (l <= r) {
-    int mid = (l + r) / 2;
+    int mid = l + (r - l) / 2;
 
     if (nums[mid] == target)
       return mid;
 
-    // either l~mid or mid~r is sorted
-    // mid~r is sorted
-    if (nums[mid] < nums[r]) {
-      // if target is in mid~r
-      if (nums[mid] < target && target <= nums[r]) {
-        l = mid + 1;
-      } else {
-        r = mid - 1;
-      }
-    }
-    // l~mid is sorted
-    else {
-      // if target is in l~mid
-      if (nums[l] <= target && target < nums[mid]) {
-        r = mid - 1;
-      } else {
-        l = mid + 1;
-      }
+    // observation: either [l..mid) or (mid..r] is sorted
+    if (
+        // (mid..r] is sorted and the target is in (mid..r]
+        (nums[mid] < nums[r] && nums[mid] < target && target <= nums[r]) ||
+        // [l..mid) is sorted and the target is NOT in [l..mid)
+        (nums[mid] > nums[r] && !(nums[l] <= target && target < nums[mid]))) {
+      l = mid + 1;
+    } else {
+      r = mid - 1;
     }
   }
 
