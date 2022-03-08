@@ -6,7 +6,7 @@ int findPeakElement(int *nums, int numsSize) {
 
   while (l <= r) {
     // trying to move mid to peak
-    int mid = (l + r) / 2;
+    int mid = l + (r - l) / 2;
 
     // is left side increasing?
     if (mid == 0 || nums[mid] > nums[mid - 1]) {

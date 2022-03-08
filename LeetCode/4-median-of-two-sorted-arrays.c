@@ -17,7 +17,7 @@ double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2, int nums2Si
   // first/last possible partition index
   int l = 0, r = nums1Size;
   while (l <= r) {
-    int mid = (l + r) / 2;
+    int mid = l + (r - l) / 2;
 
     // get the first parititoin1 elements from nums1 and merge it with the first partition2 elements from nums2
     int partition1 = mid;

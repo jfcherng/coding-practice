@@ -24,7 +24,7 @@ int sort_num_infos(const void *a, const void *b) {
 
 int binary_search(num_info *arr, int l, int r, int target) {
   while (r >= l) {
-    int mid = (l + r) / 2;
+    int mid = l + (r - l) / 2;
 
     if (*arr[mid].value == target) {
       return mid;

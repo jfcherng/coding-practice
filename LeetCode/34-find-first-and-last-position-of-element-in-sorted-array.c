@@ -10,7 +10,7 @@ int *searchRange(int *nums, int numsSize, int target, int *returnSize) {
   // binary search
   int l = 0, r = numsSize - 1;
   while (l <= r) {
-    int mid = (l + r) / 2;
+    int mid = l + (r - l) / 2;
     if (nums[mid] > target) {
       r = mid - 1;
     } else if (nums[mid] < target) {

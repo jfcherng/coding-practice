@@ -10,7 +10,7 @@ static inline int sorter(const void *a, const void *b) {
 
 int binary_search(int *nums, int target, int l, int r, int *cursor) {
   while (l <= r) {
-    int mid = (l + r) / 2;
+    int mid = l + (r - l) / 2;
     *cursor = mid;
 
     if (nums[mid] < target) {

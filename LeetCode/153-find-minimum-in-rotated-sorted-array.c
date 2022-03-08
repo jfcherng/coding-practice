@@ -9,7 +9,7 @@ int findMin(int *nums, int numsSize) {
   int l = 0, r = numsSize - 1;
 
   while (l <= r) {
-    int mid = (l + r) / 2;
+    int mid = l + (r - l) / 2;
 
     res = MIN(res, nums[mid]);
 
