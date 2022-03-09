@@ -22,11 +22,14 @@ struct ListNode *deleteDuplicates(struct ListNode *head) {
     }
     // delete duplicates
     else {
+      /*
       while (*pp != last->next) {
-        // struct ListNode *tmp = *pp;
+        struct ListNode *tmp = *pp;
         *pp = (*pp)->next;
-        // free(tmp);
+        free(tmp);
       }
+      */
+      *pp = last->next;
     }
   }
 
