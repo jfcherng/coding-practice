@@ -14,13 +14,19 @@ class Solution:
 
             for i in range(width - 1):
                 # top row
-                matrix[top_left[0]][top_left[1] + i] = (base_value + i)
+                matrix[top_left[0]][top_left[1] + i] = base_value + i
                 # right column
-                matrix[top_left[0] + i][bottom_right[1]] = (base_value + i) + (width - 1)
+                matrix[top_left[0] + i][bottom_right[1]] = (base_value + i) + (
+                    width - 1
+                )
                 # bottom row
-                matrix[bottom_right[0]][bottom_right[1] - i] = (base_value + i) + (width - 1) * 2
+                matrix[bottom_right[0]][bottom_right[1] - i] = (base_value + i) + (
+                    width - 1
+                ) * 2
                 # left column
-                matrix[bottom_right[0] - i][top_left[1]] = (base_value + i) + (width - 1) * 3
+                matrix[bottom_right[0] - i][top_left[1]] = (base_value + i) + (
+                    width - 1
+                ) * 3
             else:
                 # center cell
                 matrix[top_left[0]][top_left[1]] = base_value
@@ -33,7 +39,7 @@ class Solution:
 
         nth_run = 0
         base_value = 1
-        while nth_run <= (width-1) // 2:
+        while nth_run <= (width - 1) // 2:
             fill_border(
                 matrix,
                 top_left=(nth_run, nth_run),

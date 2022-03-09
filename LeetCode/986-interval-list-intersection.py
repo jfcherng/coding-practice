@@ -2,7 +2,9 @@ from typing import List
 
 
 class Solution:
-    def intervalIntersection(self, l1: List[List[int]], l2: List[List[int]]) -> List[List[int]]:
+    def intervalIntersection(
+        self, l1: List[List[int]], l2: List[List[int]]
+    ) -> List[List[int]]:
         res: List[List[int]] = []
 
         def get_overlapped(interval1: List[int], interval2: List[int]) -> List[int]:

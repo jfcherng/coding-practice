@@ -3,7 +3,9 @@ from collections import deque
 
 
 class Solution:
-    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+    def floodFill(
+        self, image: List[List[int]], sr: int, sc: int, newColor: int
+    ) -> List[List[int]]:
         if (sourceColor := image[sr][sc]) == newColor:
             return image
 

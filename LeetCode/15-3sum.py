@@ -2,7 +2,9 @@ from typing import Generator, List
 
 
 class Solution:
-    def twoSum(self, target: int, nums: List[int], l: int, r: int) -> Generator[List[int], None, None]:
+    def twoSum(
+        self, target: int, nums: List[int], l: int, r: int
+    ) -> Generator[List[int], None, None]:
         while l < r:
             total = nums[l] + nums[r]
 

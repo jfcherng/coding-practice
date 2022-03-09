@@ -12,7 +12,7 @@ class Solution:
                 c = s[idx].lower()
             else:
                 c = s[idx]
-            return s[: idx] + c + s[idx + 1 :]
+            return s[:idx] + c + s[idx + 1 :]
 
         def isLetter(c: str) -> bool:
             return "a" <= c <= "z" or "A" <= c <= "Z"

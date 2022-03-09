@@ -27,7 +27,12 @@ class Solution:
                 return
 
             # can place at (r, c)
-            if r not in rSet and c not in cSet and (tlbr := c - r) not in tlbrSet and (trbl := c + r) not in trblSet:
+            if (
+                r not in rSet
+                and c not in cSet
+                and (tlbr := c - r) not in tlbrSet
+                and (trbl := c + r) not in trblSet
+            ):
                 # place at (r, c)
                 queens.add((r, c))
                 rSet.add(r)

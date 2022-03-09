@@ -8,7 +8,9 @@ class Solution:
             return s[:idx] + "?" + s[idx + 1 :]
 
         # build neighborship
-        neighbors: collections.defaultdict[str, List[str]] = collections.defaultdict(list)
+        neighbors: collections.defaultdict[str, List[str]] = collections.defaultdict(
+            list
+        )
         for word in wordList:
             for i in range(len(word)):
                 neighbors[get_pattern(word, i)].append(word)
