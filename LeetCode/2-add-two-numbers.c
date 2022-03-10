@@ -1,10 +1,5 @@
 #include "_leetcode_common.c"
 
-void print_list(char *name, struct ListNode *head) {
-  printf("%s: ", name);
-  printListNodes(head);
-}
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -13,17 +8,11 @@ void print_list(char *name, struct ListNode *head) {
  * };
  */
 struct ListNode *addTwoNumbers(struct ListNode *l1, struct ListNode *l2) {
-  struct ListNode *head = malloc(sizeof(*head));
-  struct ListNode *curr = head;
+  struct ListNode *head = NULL, **pp = &head;
 
   int carry = 0;
   while (l1 || l2 || carry) {
-    int digit = carry;
-    if (l1)
-      digit += l1->val;
-    if (l2)
-      digit += l2->val;
-
+    int digit = carry + (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
     if (digit > 9) {
       carry = 1;
       digit -= 10;
@@ -35,38 +24,27 @@ struct ListNode *addTwoNumbers(struct ListNode *l1, struct ListNode *l2) {
     node->val = digit;
     node->next = NULL;
 
-    curr->next = node;
-    curr = node;
+    *pp = node;
+    pp = &(node->next);
 
-    if (l1)
-      l1 = l1->next;
-    if (l2)
-      l2 = l2->next;
+    l1 = l1 ? l1->next : NULL;
+    l2 = l2 ? l2->next : NULL;
   }
 
-  return head->next;
+  return head;
 }
 
 int main(int argc, char *argv[]) {
-  int l1_1[] = {2, 4, 3}, l2_2[] = {5, 6, 4};
+  struct ListNode *a = NULL, *b = NULL, *res = NULL;
 
-  struct ListNode a1_1 = {.val = 2};
-  struct ListNode a2_1 = {.val = 4};
-  struct ListNode a3_1 = {.val = 3};
-  a1_1.next = &a2_1;
-  a2_1.next = &a3_1;
-  a3_1.next = NULL;
-
-  struct ListNode b1_1 = {.val = 5};
-  struct ListNode b2_1 = {.val = 6};
-  struct ListNode b3_1 = {.val = 4};
-  b1_1.next = &b2_1;
-  b2_1.next = &b3_1;
-  b3_1.next = NULL;
-
-  struct ListNode *ans1 = addTwoNumbers(&a1_1, &b1_1);
-
-  print_list("ans1", ans1);
+  int l1_1[] = {2, 4, 3}, l2_1[] = {5, 6, 4};
+  a = createListNodesFromList(l1_1, sizeof(l1_1) / sizeof(int));
+  b = createListNodesFromList(l2_1, sizeof(l2_1) / sizeof(int));
+  res = addTwoNumbers(a, b);
+  printListNodes(res); // 7 -> 0 -> 8 -> NULL
+  free(a);
+  free(b);
+  free(res);
 
   return 0;
 }

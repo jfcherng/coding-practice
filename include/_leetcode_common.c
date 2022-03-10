@@ -14,14 +14,14 @@
 // linked list //
 /////////////////
 
-struct ListNode *createListNode(const int val) {
+struct ListNode *createListNode(const int val, struct ListNode *const next) {
   struct ListNode *node = (struct ListNode *) malloc(sizeof(*node));
   node->val = val;
-  node->next = NULL;
+  node->next = next;
   return node;
 }
 
-void freeListNodes(struct ListNode **headp) {
+void freeListNodes(struct ListNode **const headp) {
   for (struct ListNode *p = *headp, *tmp = NULL; p;) {
     tmp = p;
     p = p->next;
@@ -30,10 +30,10 @@ void freeListNodes(struct ListNode **headp) {
   *headp = NULL;
 }
 
-struct ListNode *createListNodesFromList(const int *vals, const int n) {
+struct ListNode *createListNodesFromList(const int *const vals, const int n) {
   struct ListNode *head = NULL, **pp = &head;
   for (int i = 0; i < n; ++i) {
-    *pp = createListNode(vals[i]);
+    *pp = createListNode(vals[i], NULL);
     pp = &((*pp)->next);
   }
   return head;
