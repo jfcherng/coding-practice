@@ -8,7 +8,7 @@
  * };
  */
 struct ListNode *mergeTwoLists(struct ListNode *l1, struct ListNode *l2) {
-  struct ListNode *head, **pp = &head, **less;
+  struct ListNode *head = NULL, **pp = &head, **less = NULL;
 
   for (; l1 && l2; pp = &((*pp)->next)) {
     less = l1->val < l2->val ? &l1 : &l2;
@@ -22,7 +22,7 @@ struct ListNode *mergeTwoLists(struct ListNode *l1, struct ListNode *l2) {
 }
 
 int main(int argc, char *argv[]) {
-  struct ListNode *l1, *l2, *res;
+  struct ListNode *l1 = NULL,  * l2=NULL ,  *res=NULL;
 
   int v1[] = {1, 2, 4};
   l1 = createListNodesFromList(v1, sizeof(v1) / sizeof(int));
