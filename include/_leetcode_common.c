@@ -39,6 +39,39 @@ struct ListNode *createListNodesFromList(const int *const vals, const int n) {
   return head;
 }
 
+//////////
+// tree //
+//////////
+
+struct TreeNode *createTreeNode(const int val, struct TreeNode *const left, struct TreeNode *const right) {
+  struct TreeNode *node = (struct TreeNode *) malloc(sizeof(*node));
+  node->val = val;
+  node->left = left;
+  node->right = right;
+  return node;
+}
+
+struct TreeNode *_createTreeNodesFromListForIdx(const int *const vals, const int n, const int idx) {
+  return idx >= n || vals[idx] == TREENODE_NULL
+             ? NULL
+             : createTreeNode(vals[idx], // ...
+                              _createTreeNodesFromListForIdx(vals, n, (idx + 1) * 2 - 1),
+                              _createTreeNodesFromListForIdx(vals, n, (idx + 1) * 2));
+}
+
+struct TreeNode *createTreeNodesFromList(const int *const vals, const int n) {
+  return _createTreeNodesFromListForIdx(vals, n, 0);
+}
+
+void freeTreeNodes(struct TreeNode **rootp) {
+  if (!*rootp)
+    return;
+  freeTreeNodes(&((*rootp)->left));
+  freeTreeNodes(&((*rootp)->right));
+  free(*rootp);
+  *rootp = NULL;
+}
+
 ///////////
 // debug //
 ///////////
@@ -61,4 +94,46 @@ void printListNodes(struct ListNode const *head) {
     head = head->next;
   }
   printf("NULL\n");
+}
+
+typedef enum {
+  PRINT_PRE_ORDER,
+  PRINT_IN_ORDER,
+  PRINT_POST_ORDER,
+  PRINT_EULERIAN_PATH // print before leaving nodes
+} TreePrintType;
+
+void _printTreeNodes(const struct TreeNode *const root, const TreePrintType pt) {
+  if (pt == PRINT_PRE_ORDER)
+    printf("%d -> ", root->val);
+  if (root->left) {
+    if (pt == PRINT_EULERIAN_PATH)
+      printf("%d -> ", root->val);
+    _printTreeNodes(root->left, pt);
+  }
+  if (pt == PRINT_IN_ORDER)
+    printf("%d -> ", root->val);
+  if (root->right) {
+    if (pt == PRINT_EULERIAN_PATH)
+      printf("%d -> ", root->val);
+    _printTreeNodes(root->right, pt);
+  }
+  if (pt == PRINT_POST_ORDER || pt == PRINT_EULERIAN_PATH)
+    printf("%d -> ", root->val);
+}
+
+void printTreeNodes(const struct TreeNode *const root, const TreePrintType pt) {
+  if (pt == PRINT_PRE_ORDER)
+    printf("(pre-order) ");
+  else if (pt == PRINT_IN_ORDER)
+    printf("(in-order) ");
+  else if (pt == PRINT_POST_ORDER)
+    printf("(post-order) ");
+  else if (pt == PRINT_EULERIAN_PATH)
+    printf("(Eulerian path) ");
+  else
+    printf("(unknown-order) ");
+  if (root)
+    _printTreeNodes(root, pt);
+  printf("END\n");
 }
