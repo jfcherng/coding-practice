@@ -6,27 +6,31 @@ struct Node {
   struct Node **neighbors;
 };
 
-#define MAX_NODE (100)
+#define MAX_NODE_CNT (100)
 
-struct Node *bfs(struct Node *node, struct Node **nodes) {
+struct Node *dfs(struct Node *node, struct Node **nodes) {
+  if (!node)
+    return NULL;
+
   if (nodes[node->val])
     return nodes[node->val];
 
-  struct Node *cloned = malloc(sizeof(*cloned));
+  struct Node *cloned = calloc(1, sizeof(*cloned));
   nodes[node->val] = cloned;
 
   cloned->val = node->val;
   cloned->numNeighbors = node->numNeighbors;
-  cloned->neighbors = malloc(node->numNeighbors * sizeof(*(cloned->neighbors)));
+  cloned->neighbors = calloc(node->numNeighbors, sizeof(*(cloned->neighbors)));
   for (int i = 0; i < node->numNeighbors; ++i)
-    cloned->neighbors[i] = bfs(node->neighbors[i], nodes);
+    cloned->neighbors[i] = dfs(node->neighbors[i], nodes);
 
   return cloned;
 }
 
 struct Node *cloneGraph(struct Node *node) {
-  struct Node *nodes[MAX_NODE + 1] = {}; // all 0 (NULL)
-  return node ? bfs(node, nodes) : NULL;
+  // cache for cloned nodes
+  struct Node *nodes[MAX_NODE_CNT + 1] = {0}; // all 0 (NULL)
+  return dfs(node, nodes);
 }
 
 int main(int argc, char *argv[]) {
