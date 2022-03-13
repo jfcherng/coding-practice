@@ -3,42 +3,30 @@
 #define MIN(x, y) ((x) < (y) ? (x) : (y))
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 #define IS_ODD(n) (n & 1)
-#define SWAP_INT_PTR(a, b)                                                                                             \
+#define SWAP_INT_BY_PTR(a, b)                                                                                          \
   {                                                                                                                    \
     int tmp = *(a);                                                                                                    \
     *(a) = *(b);                                                                                                       \
     *(b) = tmp;                                                                                                        \
   }
 
-#define HEAP_OFFSET (1)
 typedef int (*heapItemComparator)(int *, int *);
 
 int cmpMaxHeap(int *a, int *b) {
   return *b - *a;
 }
 
-bool isRightLeafSmaller(int *heap, int len, int idx, heapItemComparator cmp) {
-  int rIdx = idx * 2 + 1; // 1-base index of the right leaf
-  return rIdx <= len && cmp(heap + (rIdx - HEAP_OFFSET), heap + (rIdx - HEAP_OFFSET) - 1) <= 0;
-}
-
-void _heapBubbleRoot(int *heap, int len, heapItemComparator cmp) {
-  for (int i = 1; i * 2 <= len /* has left child */;) {
-    int childIdx = isRightLeafSmaller(heap, len, i, cmp) ? (2 * i + 1) : (2 * i);
-    if (cmp(heap + (i - HEAP_OFFSET), heap + (childIdx - HEAP_OFFSET)) <= 0) {
-      break;
-    }
-    SWAP_INT_PTR(heap + (i - HEAP_OFFSET), heap + (childIdx - HEAP_OFFSET));
-    i = childIdx;
-  }
-}
-
-void _heapBubbleLeaf(int *heap, int idx, heapItemComparator cmp) {
-  for (int parent = idx / 2; idx > HEAP_OFFSET; idx = parent, parent /= 2) {
-    if (cmp(heap + (idx - HEAP_OFFSET), heap + (parent - HEAP_OFFSET)) >= 0) {
-      break;
-    }
-    SWAP_INT_PTR(heap + (idx - HEAP_OFFSET), heap + (parent - HEAP_OFFSET));
+// make heap[idx] satisfies heap property, assuming left/right subtrees are already a heap
+void _heapify(int *heap, int idx, int len, heapItemComparator cmp) {
+  int minIdx = idx, lIdx = (idx << 1) + 1, rIdx = (idx << 1) + 2;
+  if (lIdx < len && cmp(heap + lIdx, heap + minIdx) < 0)
+    minIdx = lIdx;
+  if (rIdx < len && cmp(heap + rIdx, heap + minIdx) < 0)
+    minIdx = rIdx;
+  // need swap root with child?
+  if (minIdx != idx) {
+    SWAP_INT_BY_PTR(heap + idx, heap + minIdx);
+    _heapify(heap, minIdx, len, cmp);
   }
 }
 
@@ -46,9 +34,8 @@ void _heapBubbleLeaf(int *heap, int idx, heapItemComparator cmp) {
  * Turn arr into a min heap basing on the cmp comparator.
  */
 void heapMake(int *arr, int len, heapItemComparator cmp) {
-  for (int i = 2; i <= len; ++i) {
-    _heapBubbleLeaf(arr, i, cmp);
-  }
+  for (int i = (len - 1) >> 1; i >= 0; --i)
+    _heapify(arr, i, len, cmp);
 }
 
 /**
@@ -56,7 +43,7 @@ void heapMake(int *arr, int len, heapItemComparator cmp) {
  */
 void heapReplace(int *heap, int len, int val) {
   heap[0] = val;
-  _heapBubbleRoot(heap, len, cmpMaxHeap);
+  _heapify(heap, 0, len, cmpMaxHeap);
 }
 
 int minimumDeviation(int *nums, int numsSize) {
