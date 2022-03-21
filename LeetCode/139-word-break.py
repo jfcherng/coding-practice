@@ -2,14 +2,14 @@ from typing import List
 
 
 class Solution:
-    def wordBreak(self, s: str, wordList: List[str]) -> bool:
-        # dp[i] = whether s[i:] can be cut or not
+    def wordBreak(self, s: str, words: List[str]) -> bool:
+        # dp[i] = whether s[i:] is breakable or not
         sLen = len(s)
-        dp: List[bool] = [False] * (sLen + 1)
-        dp[sLen] = True  # s[sLen:] = empty string = always matchable
+        dp = [False] * (sLen + 1)
+        dp[sLen] = True  # s[sLen:] = empty string = breakable
 
         for i in range(sLen - 1, -1, -1):
-            for word in wordList:
+            for word in words:
                 if s[i:].startswith(word) and dp[i + len(word)]:
                     dp[i] = True
                     break
