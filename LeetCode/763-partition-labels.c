@@ -4,11 +4,12 @@
 #define MIN(x, y) ((x) < (y) ? (x) : (y))
 
 int *partitionLabels(char *s, int *returnSize) {
+  // if we have "abc...xyz", the length of the output would be 26
   int *res = calloc(26, sizeof(*res));
-  int idx_res = -1;
+  int resIdx = -1;
   int len = strlen(s);
 
-  int last[26];
+  int last[26] = {0};
   for (int i = 0; i < len; ++i)
     last[s[i] - 'a'] = i;
 
@@ -16,12 +17,12 @@ int *partitionLabels(char *s, int *returnSize) {
   for (int i = 0; i < len; ++i) {
     r = MAX(r, last[s[i] - 'a']);
     if (i == r) {
-      res[++idx_res] = r - l + 1;
+      res[++resIdx] = r - l + 1;
       l = r + 1;
     }
   }
 
-  *returnSize = idx_res + 1;
+  *returnSize = resIdx + 1;
   return res;
 }
 
