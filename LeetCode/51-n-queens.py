@@ -2,7 +2,7 @@ from typing import List, Set, Tuple
 
 
 def renderBoard(n: int, queens: Set[Tuple[int, int]]) -> List[str]:
-    board: List[List[str]] = [["." for _ in range(n)] for _ in range(n)]
+    board: List[List[str]] = [["."] * n for _ in range(n)]
     for r, c in queens:
         board[r][c] = "Q"
     return ["".join(row) for row in board]
@@ -19,15 +19,16 @@ class Solution:
         trblSet: Set[int] = set()  # used top-right to bottom-left diagonals
 
         def bt(r: int, c: int) -> None:
-            if len(queens) == n:
+            if r == n:
                 res.append(renderBoard(n, queens))
                 return
 
-            if c == n or r == n:
+            if c == n:
                 return
 
             # can place at (r, c)
             if (
+                # ...
                 r not in rSet
                 and c not in cSet
                 and (tlbr := c - r) not in tlbrSet
@@ -56,6 +57,14 @@ class Solution:
         return res
 
 
+def prettyRes(res: List[List[str]]) -> None:
+    for i, board in enumerate(res, start=1):
+        print(f"===== solution {i} =====")
+        for row in board:
+            print(row)
+        print("\n")
+
+
 s = Solution()
 res = s.solveNQueens(4)
-print(f"{res = }")
+prettyRes(res)
