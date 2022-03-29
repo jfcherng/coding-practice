@@ -14,17 +14,13 @@ class Solution:
                 # There are some unpicked elements left.
                 # We have choice to pick any one of those orders.
                 if unpicked > 0:
-                    dp[unpicked][undelivered] += (
-                        unpicked * dp[unpicked - 1][undelivered]
-                    )
+                    dp[unpicked][undelivered] += unpicked * dp[unpicked - 1][undelivered]
                     dp[unpicked][undelivered] %= MOD
 
                 # Number of deliveries done is less than picked orders.
                 # We have choice to deliver any one of (undelivered - unpicked) orders.
                 if undelivered > unpicked:
-                    dp[unpicked][undelivered] += (undelivered - unpicked) * dp[
-                        unpicked
-                    ][undelivered - 1]
+                    dp[unpicked][undelivered] += (undelivered - unpicked) * dp[unpicked][undelivered - 1]
                     dp[unpicked][undelivered] %= MOD
 
         return dp[n][n]

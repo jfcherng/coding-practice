@@ -12,9 +12,7 @@ class Solution:
             return 0
 
         res = len(intervals)
-        intervals.sort(
-            key=cmp_to_key(lambda a, b: a[0] - b[0] if a[0] != b[0] else b[1] - a[1])
-        )
+        intervals.sort(key=cmp_to_key(lambda a, b: a[0] - b[0] if a[0] != b[0] else b[1] - a[1]))
 
         prev = intervals[0]
         for i in range(1, res):

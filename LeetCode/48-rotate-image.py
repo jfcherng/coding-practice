@@ -17,17 +17,11 @@ class Solution:
 
             for i in range(width - 1):
                 # left column to top row
-                matrix[top_left[0]][top_left[1] + i] = matrix[bottom_right[0] - i][
-                    top_left[1]
-                ]
+                matrix[top_left[0]][top_left[1] + i] = matrix[bottom_right[0] - i][top_left[1]]
                 # bottom row to left column
-                matrix[bottom_right[0] - i][top_left[1]] = matrix[bottom_right[0]][
-                    bottom_right[1] - i
-                ]
+                matrix[bottom_right[0] - i][top_left[1]] = matrix[bottom_right[0]][bottom_right[1] - i]
                 # right column to bottom row
-                matrix[bottom_right[0]][bottom_right[1] - i] = matrix[top_left[0] + i][
-                    bottom_right[1]
-                ]
+                matrix[bottom_right[0]][bottom_right[1] - i] = matrix[top_left[0] + i][bottom_right[1]]
                 # top row to right column
                 matrix[top_left[0] + i][bottom_right[1]] = top_row[top_left[1] + i]
 
