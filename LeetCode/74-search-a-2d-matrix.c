@@ -5,11 +5,9 @@ bool searchMatrix(int **matrix, int matrixSize, int *matrixColSize, int target) 
   int numsSize = rowSize * colSize;
 
   int l = 0, r = numsSize - 1;
-  while (l < r) {
+  while (l <= r) {
     int mid = l + (r - l) / 2;
-    int mid_row = mid / rowSize;
-    int mid_col = mid % rowSize;
-    int pivot = matrix[mid_row][mid_col];
+    int pivot = matrix[mid / rowSize][mid % rowSize];
 
     if (pivot < target) {
       l = mid + 1;
