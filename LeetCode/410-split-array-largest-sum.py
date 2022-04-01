@@ -1,8 +1,35 @@
 from typing import List
 import itertools
+import sys
 
 
 class Solution:
+    def splitArray_binary_search(self, nums: List[int], m: int) -> int:
+        def canSplit(targetSum: int, m: int) -> bool:
+            """Can `nums` be split into `m` contiguous subarrays whose sums are <= `targetSum` ?"""
+            accumulation, parts = 0, 1
+            for num in nums:
+                accumulation += num
+                if accumulation > targetSum:
+                    accumulation = num
+                    parts += 1
+            return parts <= m
+
+        # `l` = min possible largest split array sum
+        # `r` = max possible largest split array sum
+        l, r = max(nums), sum(nums)
+
+        res = sys.maxsize
+        while l <= r:
+            mid = l + (r - l) // 2
+            if canSplit(mid, m):
+                res = mid
+                r = mid - 1
+            else:
+                l = mid + 1
+
+        return res
+
     def splitArray_dp(self, nums: List[int], m: int) -> int:
         n = len(nums)
 
@@ -35,7 +62,7 @@ class Solution:
 
         return dp[0][m]
 
-    splitArray = splitArray_dp
+    splitArray = splitArray_binary_search
 
 
 s = Solution()
