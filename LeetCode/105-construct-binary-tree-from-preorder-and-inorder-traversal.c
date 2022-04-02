@@ -9,14 +9,6 @@
  * };
  */
 
-struct TreeNode *createTreeNode(int val, struct TreeNode *left, struct TreeNode *right) {
-  struct TreeNode *node = malloc(sizeof(*node));
-  node->val = val;
-  node->left = left;
-  node->right = right;
-  return node;
-}
-
 struct TreeNode *buildTree(int *preorder, int preorderSize, int *inorder, int inorderSize) {
   // the preorder[0] is the tree root
   if (preorderSize == 0)

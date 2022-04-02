@@ -9,14 +9,6 @@
  * };
  */
 
-struct TreeNode *createTreeNode(int val, struct TreeNode *left, struct TreeNode *right) {
-  struct TreeNode *node = malloc(sizeof(*node));
-  node->val = val;
-  node->left = left;
-  node->right = right;
-  return node;
-}
-
 struct TreeNode *sortedArrayToBST_LR(int *nums, int numsSize, int l, int r) {
   if (l > r)
     return NULL;
