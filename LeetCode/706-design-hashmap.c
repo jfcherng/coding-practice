@@ -16,8 +16,10 @@ struct MyHashMap {
   MyHashMapNode *handle;
 };
 
-MyHashMapNode *_myHashMapNodeCreate() {
+MyHashMapNode *_myHashMapNodeCreate(int key, int value) {
   MyHashMapNode *obj = malloc(sizeof(*obj));
+  obj->key = key;
+  obj->value = value;
   obj->next = NULL;
   return obj;
 }
@@ -33,9 +35,8 @@ MyHashMapNode *_myHashMapFindKey(MyHashMap *obj, int key) {
 }
 
 void _myHashMapAddNode(MyHashMap *obj, MyHashMapNode *node) {
-  MyHashMapNode *tmp = obj->handle;
+  node->next = obj->handle;
   obj->handle = node;
-  node->next = tmp;
 }
 
 MyHashMap *myHashMapCreate() {
@@ -46,13 +47,11 @@ MyHashMap *myHashMapCreate() {
 
 void myHashMapPut(MyHashMap *obj, int key, int value) {
   MyHashMapNode *node = _myHashMapFindKey(obj, key);
-  if (!node) {
-    // prepare node
-    node = _myHashMapNodeCreate();
-    node->key = key;
-    _myHashMapAddNode(obj, node);
+  if (node) {
+    node->value = value;
+  } else {
+    _myHashMapAddNode(obj, _myHashMapNodeCreate(key, value));
   }
-  node->value = value;
 }
 
 int myHashMapGet(MyHashMap *obj, int key) {
